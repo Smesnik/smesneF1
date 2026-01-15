@@ -2,6 +2,7 @@ import requests
 from pathlib import Path
 import datetime
 import json
+from config import BASE_URL, TIMEOUT
 
 def run_get(endpoint, params=None, subdirs=None):
 
@@ -11,7 +12,7 @@ def run_get(endpoint, params=None, subdirs=None):
         subdirs = ""
 
     base_dir = Path(__file__).parent.parent.parent
-    base_url = 'https://api.openf1.org/v1/'
+    base_url = BASE_URL
     raw_input = f"data/raw/{endpoint}"
     current_date = datetime.datetime.now().strftime("%Y-%m-%d")
     run_date = datetime.datetime.now().strftime('%Y%m%dT%H%M%S')
@@ -22,7 +23,7 @@ def run_get(endpoint, params=None, subdirs=None):
     input_name = input_dir / f"{endpoint}.json"
     meta_name = input_dir / "_metadata.json"
 
-    response = requests.get(base_url+endpoint, params=params, timeout=20)
+    response = requests.get(base_url+endpoint, params=params, timeout=TIMEOUT)
 
     if response.status_code == 200:
 

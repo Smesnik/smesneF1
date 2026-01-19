@@ -16,5 +16,5 @@ for file in raw_dir:
 
 
 df1.to_parquet(bronze_dir / 'sessions.parquet')
-print(df1)
+
 

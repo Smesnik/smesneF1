@@ -13,6 +13,6 @@ for file in raw_dir:
         df1 = pd.concat([df1, df2])
 
 
-df1.to_parquet(bronze_dir / 'meetings.parquet')
+df1.to_parquet(bronze_dir / 'meetings.parquet', index=False)
 
 

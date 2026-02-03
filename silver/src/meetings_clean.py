@@ -8,7 +8,9 @@ silver_dir = base_dir / 'data' / 'silver' / 'meetings'
 silver_dir.mkdir(parents=True, exist_ok=True)
 
 
-raw_silver = pd.read_parquet(bronze_dir / 'meetings.parquet').sort_values(by='date_start')
-df_silver = raw_silver.drop_duplicates(subset='meeting_key')
+raw_silver = pd.read_parquet(bronze_dir / 'meetings.parquet').sort_values(by='run_id')
+
+
+df_silver = raw_silver.drop_duplicates(subset='meeting_key', keep='last')
 
 df_silver.to_parquet(silver_dir / 'meetings.parquet', index=False)
